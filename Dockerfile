@@ -1,9 +1,6 @@
-FROM python:3.7
-# Set the working directory to /app
+FROM python:3.7-slim-stretch
 WORKDIR /app
-# Copy local contents into the container
 ADD . /app
-# Install all required dependencies
 RUN pip install -r requirements.txt
-EXPOSE 5000
-CMD ["python", "./main.py"]
+ENV FLASK_APP=/app/main.py
+CMD ["flask", "run", "--host", "0.0.0.0"]
